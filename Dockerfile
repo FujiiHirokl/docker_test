@@ -1,20 +1,11 @@
-# DockerイメージのベースをNode.js 14に設定します
-FROM node:14
+FROM node
 
-# 作業ディレクトリを/appに設定します
 WORKDIR /app
 
-# package.jsonファイルをコピーします
-COPY package.json .
+COPY . /app
 
-# npm installコマンドを実行して依存関係をインストールします
 RUN npm install
 
-# 全てのファイルをコピーします
-COPY . .
+EXPOSE 80
 
-# コンテナ内のポート3000を外部に公開します
-EXPOSE 3000
-
-# アプリケーションを起動します
-CMD [ "node", "app.mjs" ]
+CMD ["node","server.js"]
